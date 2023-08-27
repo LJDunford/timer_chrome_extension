@@ -9,22 +9,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     let interval;
 
-    if (startButton) {
-        startButton.addEventListener('click', () => {
-            const hours = parseInt(hoursInput.value, 10);
-            const minutes = parseInt(minutesInput.value, 10);
+    startButton.addEventListener('click', () => {
+        const hours = parseInt(hoursInput.value, 10);
+        const minutes = parseInt(minutesInput.value, 10);
       
-            startCountdown(hours, minutes);
-        })
-    }
+        startCountdown(hours, minutes);
+    })
      
-    if (pauseButton) {
-        pauseButton.addEventListener('click', pauseCountdown());
-    }
+    pauseButton.addEventListener('click', pauseCountdown());
     
-    if (endButton) {
-        endButton.addEventListener('click', endCountdown());
-    }
+    endButton.addEventListener('click', endCountdown());
 
     // ***** FUNCTIONS *****
     function startCountdown(hours, minutes) {
