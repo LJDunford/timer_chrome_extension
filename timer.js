@@ -1,16 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    const startButton = document.getElementById('startButton');
-    
-    startButton.addEventListener('click', () => {
-        chrome.runtime.sendMessage({ action: 'startCountdown'}, function(response) {
-            console.log(response);
-        });
-    });
-
-});
-
-document.addEventListener('DOMContentLoaded', () => {
     const startButton = document.getElementById('startButton');
     const hoursInput = document.getElementById('hours');
     const minutesInput = document.getElementById('minutes');

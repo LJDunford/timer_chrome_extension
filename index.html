@@ -2,22 +2,21 @@
 <html lang="en">
 <head>
     <title>Lewis' Work Timer</title>
+    <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
     
     <h1>Lewis' Work Timer</h1>
     <h2 id="timer">00:00:00</h2>
 
-    <div>
-        <label for="hours">Hours:</label>
-        <input type="number" id="hours" min="0">
-        <label for="minutes">Minutes:</label>
-        <input type="number" id="minutes" min="0" max="59">
+    <div class="input_group">
+        <input type="number" name="hours" id="hours" min="0" class="input_field" placeholder="Hours">
+        <input type="number" name="minutes" id="minutes" min="0" class="input_field" placeholder="Minutes">
     </div>
     
-    <button id="startButton">Start Countdown</button>
-    <button id="pauseButton">Pause</button>
-    <button id="endButton">End</button>
+    <button id="startButton" class="button">Start Countdown</button>
+    <button id="pauseButton" class="button">Pause</button>
+    <button id="endButton" class="button">End</button>
 
 </body>
 <script src="timer.js"></script>

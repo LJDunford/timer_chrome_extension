@@ -2,7 +2,7 @@
     "name": "Lewis' work timer",
     "manifest_version": 3,
     "version": "1.0.1",
-    "description": "Extension to start a work timer to increase productivity",
+    "description": "Extension work timer to help increase productivity",
     "action": {
         "default_icon": "icon.png",
         "default_popup": "index.html"
