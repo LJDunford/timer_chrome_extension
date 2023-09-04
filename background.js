@@ -9,6 +9,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     } else if (request.action === 'endCountdown') {
         endCountdown();
         sendResponse("Countdown Ended")
+    } else if (request.action === 'closePopup') {
+        closePopup();
+        sendResponse('Popup Closed')
     }
 }); 
 
@@ -24,8 +27,9 @@ function startCountdown(hours, minutes) {
     interval = setInterval(() => {
         if (!isPaused && totalSeconds <= 0) {
             clearInterval(interval);
-            tempDisplay = "Time's up! Go take a well deserved break!";
+            tempDisplay = "Time's up!";
             chrome.runtime.sendMessage({action: 'updateTimerDisplay', time: tempDisplay})
+            openPopup();
             return;
         }
 
@@ -66,4 +70,21 @@ function updateTimerDisplay() {
     chrome.runtime.sendMessage({action: 'updateTimerDisplay', time: formattedTime}, function(response) {
         console.log(response);
     })
+}
+
+function openPopup() {
+    chrome.windows.create({
+        url: "popup.html",
+        type: "popup",
+        width: 400, // Set the width and height according to your design
+        height: 200,
+        left: 100, // Position the popup as desired
+        top: 100,
+    });
+}
+
+function closePopup() {
+    chrome.windows.getCurrent(function(window) {
+        chrome.windows.remove(window.id);
+    });
 }
