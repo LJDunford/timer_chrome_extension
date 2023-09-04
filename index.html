@@ -6,17 +6,25 @@
 </head>
 <body>
     
-    <h1>Lewis' Work Timer</h1>
-    <h2 id="timer">00:00:00</h2>
+    <h1 id="timer" class="timer">00:00:00</h1>
 
-    <div class="input_group">
-        <input type="number" name="hours" id="hours" min="0" class="input_field" placeholder="Hours">
-        <input type="number" name="minutes" id="minutes" min="0" class="input_field" placeholder="Minutes">
+    <div class="form-group">
+        <span>Hours</span>
+        <input type="number" name="hours" id="hours" min="0" class="form-field">
+    </div>
+
+    <div class="form-group">
+        <span>Minutes</span>
+        <input type="number" name="minutes" id="minutes" min="0" class="form-field">
     </div>
     
     <button id="startButton" class="button">Start Countdown</button>
-    <button id="pauseButton" class="button">Pause</button>
-    <button id="endButton" class="button">End</button>
+    <div class="secondary-buttons-container">
+        <button id="pauseButton" class="button">Pause</button>
+        <button id="endButton" class="button">End</button>
+    </div>
+
+    <p>Work Timer created by Lewis Dunford</p>
 
 </body>
 <script src="timer.js"></script>
