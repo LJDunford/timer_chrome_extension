@@ -6,32 +6,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const pauseButton = document.getElementById('pauseButton');
     const endButton = document.getElementById('endButton');
 
+    const port = chrome.runtime.connect({name: 'popup' });
+
+    let isPaused = false;
+
     startButton.addEventListener('click', () => {
         const hours = parseInt(hoursInput.value, 10);
         const minutes = parseInt(minutesInput.value, 10);
 
-        chrome.runtime.sendMessage({ action: 'startCountdown', hours, minutes }, function(response) {
-            console.log(response);
-        });
+        port.postMessage({ action: 'startCountdown', hours, minutes });
     });
 
     pauseButton.addEventListener('click', () => {
-        chrome.runtime.sendMessage({ action: 'pauseCountdown' }, function(response) {
-            console.log(response);
-        });
+        let resultText = isPaused ? pauseButton.innerHTML = 'Pause' : pauseButton.innerHTML = 'Resume';
+        port.postMessage({ action: 'pauseCountdown' });
+        isPaused = !isPaused;
     });
 
     endButton.addEventListener('click', () => {
-        chrome.runtime.sendMessage({ action: 'endCountdown' }, function(response) {
-            console.log(response);
-        });
+        port.postMessage({ action: 'endCountdown' });
     });
 
-    chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-        if (request.action === 'updateTimerDisplay') {
-            const formattedTime = request.time;
+    port.onMessage.addListener(function(message) {
+        if (message.action === 'updateTimerDisplay') {
+            const formattedTime = message.time;
             timerDisplay.innerHTML = formattedTime;
-            sendResponse("Timer display updated");
         }
     });
 });
